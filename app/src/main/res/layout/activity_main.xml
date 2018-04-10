@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#607d8b">
+
+
+
+
+        <!--Table Layout with 3 rows and each row with 3 buttons-->
+        <TableLayout
+            android:id="@+id/GameBoard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="30dp"
+            android:background="#ffc107"
+            android:columnCount="3"
+            android:gravity="center"
+            android:padding="8dp"
+            android:rowCount="3">
+
+            <TableRow>
+
+                <Button
+                    android:id="@+id/b00"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#ef6c00"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/b01"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#558b2f"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/b02"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+            </TableRow>
+
+            <!--Row 2-->
+            <TableRow>
+
+                <Button
+                    android:id="@+id/b10"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#ef6c00"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/b11"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/b12"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#558b2f"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TableRow>
+
+
+                <Button
+                    android:id="@+id/b20"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#558b2f"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/b21"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="@color/colorAccent"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+
+                <Button
+                    android:id="@+id/b22"
+                    style="@style/Widget.AppCompat.Button"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_margin="5dp"
+                    android:background="#ef6c00"
+                    android:gravity="center"
+                    android:textColor="#1a237e"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+            </TableRow>
+        </TableLayout>
+
+         <TextView
+            android:id="@+id/info"
+             android:layout_below="@id/GameBoard"
+            android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+            android:text="info"
+             android:textColor="#000000"
+            android:gravity="center_horizontal"
+             android:layout_marginLeft="20dp"
+             android:layout_marginTop="25dp"
+            android:textSize="20sp" />
+
+        <!--TextView to show user turns and winner-->
+
+
+        `<LinearLayout
+            android:id="@+id/GameButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/GameBoard"
+            android:orientation="vertical"
+            android:layout_marginStart="20dp"
+            android:layout_toEndOf="@id/GameBoard">
+
+            <Button
+                android:id="@+id/start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#ff9800"
+                android:padding="8dp"
+                android:text="@string/start"
+                android:textStyle="bold"
+                android:onClick="start"
+                />
+
+
+
+            <Button
+                android:id="@+id/new_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:backgroundTint="#ff9800"
+            android:padding="8dp"
+            android:text="@string/new_game"
+                android:onClick="new_game"/>
+
+
+            <Button
+                android:id="@+id/exit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#ff9800"
+                android:padding="8dp"
+                android:text="Exit"
+                android:onClick="EXIT"/>
+
+            <Button
+                android:id="@+id/help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:backgroundTint="#ff9800"
+                android:padding="8dp"
+                android:text="@string/help"
+                android:onClick="help"/>
+
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/score"
+            android:layout_alignParentBottom="true"
+            android:layout_below="@id/activity_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#ffd180">
+
+            <TextView
+                android:id="@+id/text1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/score"
+                android:textAllCaps="false"
+                android:layout_margin="10dp"
+                android:textStyle="bold"
+                android:textSize="22sp"
+                android:textColor="#e65100"
+
+                />
+
+            <TableLayout
+                android:id="@+id/scoreboard"
+                android:layout_below="@id/text1"
+                android:layout_margin="16dp"
+                android:layout_alignParentBottom="true"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rowCount="3"
+                android:columnCount="2"
+                >
+
+                <TableRow>
+
+                    <TextView
+                        android:text="@string/game"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_margin="12dp"
+                        android:background="#fff3e0"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/player_1"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:background="#fff3e0"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/computer"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:background="#fff3e0"/>
+
+                </TableRow>
+
+                <TableRow>
+                    <TextView
+                        android:text="@string/player_2"
+                        android:textStyle="bold"
+                        android:textSize="16sp"
+                        android:layout_margin="10dp"
+                        android:background="#fff3e0"
+                        />
+
+                </TableRow>
+
+            </TableLayout>
+
+        </RelativeLayout>
+    </RelativeLayout>
+
+</ScrollView>
+
