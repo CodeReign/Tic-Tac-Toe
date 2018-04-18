@@ -11,17 +11,9 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
-    private TicTacToeGame mGame;
 
-    // Buttons making up the board
-    private Button mBoardButtons[];
     // Various text displayed
 
-
-    // Characters used to represent the human, computer, and open spots
-    public static final char HUMAN_PLAYER = 'X';
-    public static final char COMPUTER_PLAYER = 'O';
-    public static final char OPEN_SPOT = ' ';
 
 
     Button start;
@@ -58,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        mBoardButtons = new Button[TicTacToeGame.BOARD_SIZE];
         b00 = (Button) findViewById(R.id.b00);
         b01 = (Button) findViewById(R.id.b01);
         b02 = (Button) findViewById(R.id.b02);
@@ -75,7 +66,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         new_game = (Button) findViewById(R.id.new_game);
         start = (Button) findViewById(R.id.start);
         exit = (Button) findViewById(R.id.exit);
-        mGame = new TicTacToeGame();
+
 
 
 
@@ -98,9 +89,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initializeBoardStatus();
 
-        startNewGame();
-        // Human goes first
-        tvInfo.setText("You go first.");
 
     }
 
@@ -109,6 +97,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         Log.d(TAG, "Inside onClick");
 
         boolean new_gameButtonPressed = false;
+        tvInfo.setText("You go First!");
 
         switch (view.getId()) {
             case R.id.b00:
@@ -231,11 +220,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 PLAYER_X = !PLAYER_X;
 
                 if(PLAYER_X){
-                    setInfo("Player X turn");
+                    tvInfo.setText("Player X turn");
                 }
-                else {
-                    setInfo("Player 0 turn");
-                }
+                else tvInfo.setText("Player 0 turn");
 
                 if(TURN_COUNT==9){
                     result("Game Draw");
@@ -247,59 +234,72 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
 
-    private void checkWinner(){
+    private void checkWinner() {
+        int winner = 0;
 
         Log.d(TAG, "Inside checkWinner");
 
+
         //Horizontal --- rows
-        for(int i=0; i<3; i++){
-            if(boardStatus[i][0] == boardStatus[i][1] && boardStatus[i][0] == boardStatus[i][2]){
-                if (boardStatus[i][0]==1){
-                    result("Player X winner\n" + (i+1)+" row");
+        for (int i = 0; i < 3; i++) {
+            if (boardStatus[i][0] == boardStatus[i][1] && boardStatus[i][0] == boardStatus[i][2]) {
+                if (boardStatus[i][0] == 1) {
+                    result("Player X winner\n" + (i + 1) + " row");
                     break;
-                }
-                else if (boardStatus[i][0]==0) {
-                    result("Player 0 winner\n" + (i+1)+" row");
+                } else if (boardStatus[i][0] == 0) {
+                    result("Player 0 winner\n" + (i + 1) + " row");
                     break;
                 }
             }
         }
 
         //Vertical --- columns
-        for(int i=0; i<3; i++){
-            if(boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]){
-                if (boardStatus[0][i]==1){
-                    result("Player X winner\n" + (i+1)+" column");
+        for (int i = 0; i < 3; i++) {
+            if (boardStatus[0][i] == boardStatus[1][i] && boardStatus[0][i] == boardStatus[2][i]) {
+                if (boardStatus[0][i] == 1) {
+                    result("Player X winner\n" + (i + 1) + " column");
+                    break;
+                } else if (boardStatus[0][i] == 0) {
+                    result("Player 0 winner\n" + (i + 1) + " column");
                     break;
                 }
-                else if (boardStatus[0][i]==0) {
-                    result("Player 0 winner\n" + (i+1)+" column");
-                    break;
-                }
+
+
             }
         }
 
         //First diagonal
-        if(boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]){
-            if (boardStatus[0][0]==1){
+        if (boardStatus[0][0] == boardStatus[1][1] && boardStatus[0][0] == boardStatus[2][2]) {
+            if (boardStatus[0][0] == 1) {
                 result("Player X winner\nFirst Diagonal");
-            }
-            else if (boardStatus[0][0]==0) {
+            } else if (boardStatus[0][0] == 0) {
                 result("Player 0 winner\nFirst Diagonal");
             }
         }
 
 
         //Second diagonal
-        if(boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]){
-            if (boardStatus[0][2]==1){
+        if (boardStatus[0][2] == boardStatus[1][1] && boardStatus[0][2] == boardStatus[2][0]) {
+            if (boardStatus[0][2] == 1) {
                 result("Player X winner\nSecond Diagonal");
-            }
-            else if (boardStatus[0][2]==0) {
+            } else if (boardStatus[0][2] == 0) {
                 result("Player 0 winner\nSecond Diagonal");
             }
+
+
         }
+
+
+        if (winner == 0)
+            tvInfo.setText(R.string.it_is_your_turn);
+        else if (winner == 1)
+            tvInfo.setText(R.string.it_is_a_tie);
+        else if (winner == 2)
+            tvInfo.setText(R.string.you_won);
+        else
+            tvInfo.setText(R.string.you_lose);
     }
+
 
     private void enableAllBoxes(boolean value){
         Log.d(TAG, "Inside enableAllBoxes");
@@ -376,60 +376,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     public void EXIT(View view) {
-        onDestroy();
-    }
 
-    private void startNewGame() {
-        mGame.clearBoard();
+        finish();
 
-        // Reset all buttons
-        for (int i = 0; i < mBoardButtons.length; i++) {
-            mBoardButtons[i].setText("");
-            mBoardButtons[i].setEnabled(true);
-            mBoardButtons[i].setOnClickListener(new ButtonClickListener(i));
-    }
-
-        private class ButtonClickListener implements View.OnClickListener {
-            int location;
-            public ButtonClickListener(int location) {
-                this.location = location;
-            }
-            public void onClick(View view) {
-                if (mBoardButtons[location].isEnabled()) {
-                    setMove(TicTacToeGame.TURN_COUNT, location);
-// If no winner yet, let the computer make a move
-                    int winner = mGame.checkForWinner();
-                    if (winner == 0) {
-                        tvInfo.setText("It's TURN_COUNT turn.");
-                        int move = mGame.getComputerMove();
-                        setMove(TicTacToeGame.COMPUTER_PLAYER, move);
-                        winner = mGame.checkForWinner();
-                    }
-                    if (winner == 0)
-                        tvInfo.setText("It's your turn.");
-                    else if (winner == 1)
-                        tvInfo.setText("It's a tie!");
-                    else if (winner == 2)
-                        tvInfo.setText("You won!");
-                    else
-                        tvInfo.setText("You Lose!");
-                }
-            }
-        }
-
-        private void setMove(char player, int location) {
-            mGame.setMove(player, location);
-            mBoardButtons[location].setEnabled(false);
-            mBoardButtons[location].setText(String.valueOf(player));
-            if (player == TicTacToeGame.HUMAN_PLAYER)
-                mBoardButtons[location].setTextColor(Color.rgb(0, 200, 0));
-            else
-                mBoardButtons[location].setTextColor(Color.rgb(200, 0, 0));
-        }
-}
-
-private class ButtonClickListener implements View.OnClickListener {
-    public ButtonClickListener(int i) {
     }
 }
 
